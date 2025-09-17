@@ -104,10 +104,6 @@ class WuwaBoardGameApp(QMainWindow):
             self.valid_actions = []
             print("所有选择已重置")
 
-    def refresh(self):
-        """刷新UI"""
-        return
-    
     def try_move_block(self, target_position):
         block = self.selected_block
         coord = self.selected_coord
