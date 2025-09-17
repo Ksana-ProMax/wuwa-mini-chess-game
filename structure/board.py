@@ -102,7 +102,7 @@ class Board:
                     if not (0 <= adj_pos[0] < self.shape[0] and 0 <= adj_pos[1] < self.shape[1]):
                         continue    # 不在边界内
 
-                    if (not piece_mask[adj_pos] or not self.grid_mask[adj_pos]):
+                    if (not piece_mask[adj_pos]) or (not self.grid_mask[adj_pos]):
                         continue    # 相邻的位置不可部署
 
                     for piece in block.pieces:
@@ -366,6 +366,9 @@ class Board:
 
     @classmethod
     def build_from_array(cls, arr: numpy.ndarray):
+        if len(arr.shape) != 2:
+            raise Exception("len(arr.shape) != 2 棋盘不是合法的棋盘, 棋盘维度必须为2")
+        
         blocks = cls.build_blocks(arr)
         if len(blocks) == 0:
             raise Exception("len(blocks) == 0 棋盘不是合法的棋盘")
